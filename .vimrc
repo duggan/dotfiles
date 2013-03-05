@@ -1,10 +1,20 @@
 set nocompatible				" Make Vim not act like vi
 
+if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
+  set t_Co=256
+endif
+
 call pathogen#infect()			" Load all the things in .vimrc/bundle
 call pathogen#helptags()		" Generate all the docs
 filetype plugin indent on		" Use the filetype detection magic
 syntax on						" Switch syntax highlighting on
+set background=dark
+let g:solarized_termcolors=16
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+colorscheme solarized
 set ofu=syntaxcomplete#Complete	" Use omnicomplete
+autocmd BufNewFile,BufRead *.json set ft=javascript
 
 set autoindent				" Turn on automatic indenting
 set autoread				" Automatically read files if they've changed
@@ -39,6 +49,17 @@ inoremap # X#
 " F keys
 nmap <F7> :call ToggleSpelling()<CR>
 nmap <F8> :TagbarToggle<CR>
+
+" Slash bindings
+nmap \l :setlocal number!<CR>
+nmap \o :set paste!<CR>
+nmap \e :NERDTreeToggle<CR>
+
+" Use ctrl-[hjkl] to select the active split!
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
 
 " Undo search highlighting on enter
 nnoremap <CR> :nohlsearch<CR>
@@ -81,7 +102,7 @@ let g:syntastic_phpcs_disable = 1
 let g:syntastic_c_compiler_options = ' -std=c99'
 
 " Turn on spell checking
-setlocal spell spelllang=en_gb
+" setlocal spell spelllang=en_gb
 autocmd FileType diff,gitconfig,gitrebase setlocal nospell
 function! ToggleSpelling()
 	if &spell
