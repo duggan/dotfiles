@@ -66,12 +66,10 @@ fi
 
 # Now link in the dotfiles
 symlink .bash_login
-symlink .bashrc
+symlink .bash_profile
+symlink .git-prompt
 symlink .cvsignore
 symlink .inputrc
-if bytemark_box; then symlink .muttrc; fi
-symlink .tcsh
-symlink .tcshrc
 symlink .vim
 symlink .vimrc
 symlink .cider
