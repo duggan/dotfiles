@@ -22,9 +22,7 @@ bash_completion() {
 # Print the command we're going to run and (if DRY_RUN is not set) run it.
 cmd() {
   echo $*
-  if [ ${DRY_RUN:-unset} = "unset" ]; then
-    $*
-  fi
+  $*
 }
 
 # Symlink a file from this repo.
@@ -52,7 +50,7 @@ symlink() {
 
 # Install homebrew
 if ! which brew > /dev/null 2>&1; then
-  cmd ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
+  cmd ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 brew install python
@@ -60,9 +58,7 @@ pip install cider
 
 
 # Generate .gitconfig
-if [ ${DRY_RUN:-set} != "set" ]; then
-  sed -e s/___EMAIL___/$(git config user.email || echo ross.duggan@acm.org)/ ${root}/.gitconfig.template > ${HOME}/.gitconfig
-fi
+sed -e s/___EMAIL___/$(git config user.email || echo ross.duggan@acm.org)/ ${root}/.gitconfig.template > ${HOME}/.gitconfig
 
 # Now link in the dotfiles
 symlink .bash_login
