@@ -19,6 +19,6 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 export SSL_CERT_FILE=/usr/local/etc/openssl/certs/cacert.pem
 
-. ~/.git-prompt.sh
+. ~/.git-prompt
 
-PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+PS1='[\W$(__git_ps1 " (%s)")]\$ '
