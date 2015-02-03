@@ -4,6 +4,10 @@ if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gno
   set t_Co=256
 endif
 
+if has('mouse_sgr')
+    set ttymouse=sgr
+endif
+
 call pathogen#infect()			" Load all the things in .vimrc/bundle
 call pathogen#helptags()		" Generate all the docs
 filetype plugin indent on		" Use the filetype detection magic
