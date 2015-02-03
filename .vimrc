@@ -39,6 +39,8 @@ set tabstop=4
 set title					" Put the name of the file in the terminal title
 set ttyfast					" Should be activated due to TERM, but anyway...
 set viminfo='20,\"50		" Use a viminfo file (remember 20 files, 50 lines)
+set undofile				" Maintain undo history between sessions
+set undodir=~/.vim/undos
 
 " Set a leader character for Command-T et al.
 let mapleader = ","
